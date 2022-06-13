@@ -18,6 +18,31 @@
 
 // Monster Grows, Summon Zords, defeat monster.
 console.log("Testing");
+
+function createPlayer(){
+    var playerFirstName = prompt("What is your first name?");
+    var playerLastName = prompt("What is your last name?");
+    var playerColor = prompt("What is your favorite color?");
+    var playerZord = prompt("Select Zord");
+    var player = new PowerRanger(playerFirstName, playerLastName, 50, 13, playerColor, playerZord);
+    return player;
+}
+
+function createRangerTeam(player){
+    let rangersArr = [];
+    var redRanger = new PowerRanger("Jason", "Scott", "Red", "Tyrannosaur");
+    var pinkRanger = new PowerRanger("Kimberly", "Hart", "Pink", "Pterodactyl");
+    var yellowRanger = new PowerRanger("Trini", "Kwan", "Yellow","Saber Tooth Tiger");
+    var blackRanger = new PowerRanger("Zack", "Taylor", "Black", "Mastodon");
+    var blueRanger = new PowerRanger("Billy", "Cranston", "Blue","Triceratops");
+    var greenRanger = new PowerRanger("Tommy", "Oliver","Green","DragonZord");
+    rangersArr.unshift(player, redRanger, pinkRanger,yellowRanger,blackRanger,blackRanger,blueRanger,greenRanger);
+    return rangersArr;
+
+}
+
+
+
 function randomIntFromRange(min,max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -26,7 +51,7 @@ function d6Roll(){
     return randomIntFromRange(1, 6);
 }
 
-function X2d6Roll(){
+function X2d6(){
     return d6Roll() + d6Roll()
 }
 
@@ -44,10 +69,11 @@ function Monster(NPC){
 }
 
 function spawnPuddies(){
-   let puddiesArr = []
-    var numOfPuddies = randomIntFromRange(3, 10);
+   let puddiesArr = [];
+   var numOfPuddies = randomIntFromRange(3, 10);
    for (let i = 0; i < numOfPuddies; i++)
     puddiesArr.unshift(new NPC("Puddie"+[i], 10, 2));
+   return puddiesArr;
 }
 
 
@@ -73,34 +99,7 @@ let Alpha5 = {
 
 }
 
-
-
-function startGame(){
-
-    var playerFirstName = prompt("What is your first name?");
-    var playerLastName = prompt("What is your last name?");
-    var playerColor = prompt("What is your favorite color?");
-    var player = new PowerRanger(playerFirstName, playerLastName, playerColor);
-
-    var redRanger = new PowerRanger("Jason", "Scott", "Red", "Tyrannosaur");
-    var pinkRanger = new PowerRanger("Kimberly", "Hart", "Pink", "Pterodactyl");
-    var yellowRanger = new PowerRanger("Trini", "Kwan", "Yellow","Saber Tooth Tiger");
-    var blackRanger = new PowerRanger("Zack", "Taylor", "Black", "Mastodon");
-    var blueRanger = new PowerRanger("Billy", "Cranston", "Blue","Triceratops");
-    var greenRanger = new PowerRanger("Tommy", "Oliver","Green","DragonZord");
-
-
-    console.log("Greeting");
-    console.log("Yee find yeself in yon Angel Grove Juice Bar");
-    console.log("Yee find yeself in yon Command Center");
-    console.log("Yee find yeself in yon *scene* fighting puddies");
-    console.log("Yee find yeself in yon Megazord fighting monster");
-
-
-}
-//Player Constructor
-
-function PowerRanger(firstName, lastName, HP, color, zord, defence){
+function PowerRanger(firstName, lastName, HP, defence, color, zord){
     this.HP = HP;
     this.defence = defence;
     this.firstName = firstName;
@@ -123,6 +122,28 @@ function PowerRanger(firstName, lastName, HP, color, zord, defence){
     }
 
 }
+function startGame(){
+
+createRangerTeam(createPlayer());
+
+    var redRanger = new PowerRanger("Jason", "Scott", "Red", "Tyrannosaur");
+    var pinkRanger = new PowerRanger("Kimberly", "Hart", "Pink", "Pterodactyl");
+    var yellowRanger = new PowerRanger("Trini", "Kwan", "Yellow","Saber Tooth Tiger");
+    var blackRanger = new PowerRanger("Zack", "Taylor", "Black", "Mastodon");
+    var blueRanger = new PowerRanger("Billy", "Cranston", "Blue","Triceratops");
+    var greenRanger = new PowerRanger("Tommy", "Oliver","Green","DragonZord");
+
+
+    console.log("Greeting");
+    console.log("Yee find yeeself in yon Angel Grove Juice Bar");
+    console.log("Yee find yeeself in yon Command Center");
+    console.log("Yee find yeeself in yon *scene* fighting puddies");
+    console.log("Yee find yeeself in yon Megazord fighting monster");
+
+
+}
+
+//Player Constructor
 
 // var PlayerArr = []
 // var jason = new Player("Jason", "Scott");
