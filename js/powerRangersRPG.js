@@ -17,12 +17,41 @@
 // Deploy to fight rand#ofpuddies and monster.
 
 // Monster Grows, Summon Zords, defeat monster.
+console.log("Testing");
+function randomIntFromRange(min,max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function d6Roll(){
+    return randomIntFromRange(1, 6);
+}
+
+function X2d6Roll(){
+    return d6Roll() + d6Roll()
+}
 
 function NPC(name, HP,AP){
     this.name = name;
     this.HP = HP;
     this.AP = AP;
+    this.attack = function(){
+
+    }
 }
+
+function Monster(NPC){
+
+}
+
+function spawnPuddies(){
+   let puddiesArr = []
+    var numOfPuddies = randomIntFromRange(3, 10);
+   for (let i = 0; i < numOfPuddies; i++)
+    puddiesArr.unshift(new NPC("Puddie"+[i], 10, 2));
+}
+
+
+
 
 let Zordon = {
 
@@ -34,6 +63,15 @@ let Zordon = {
 
 }
 
+let Alpha5 = {
+
+    voiceline1: "voice line 1",
+    voiceline2: "voice line 2",
+    voiceline3: "voice line 3",
+    voiceline4: "voice line 4",
+    voiceline5: "voice line 5",
+
+}
 
 
 
@@ -52,7 +90,7 @@ function startGame(){
     var greenRanger = new PowerRanger("Tommy", "Oliver","Green","DragonZord");
 
 
-    console.log("Greeting")
+    console.log("Greeting");
     console.log("Yee find yeself in yon Angel Grove Juice Bar");
     console.log("Yee find yeself in yon Command Center");
     console.log("Yee find yeself in yon *scene* fighting puddies");
@@ -62,7 +100,9 @@ function startGame(){
 }
 //Player Constructor
 
-function PowerRanger(firstName, lastName, color, zord){
+function PowerRanger(firstName, lastName, HP, color, zord, defence){
+    this.HP = HP;
+    this.defence = defence;
     this.firstName = firstName;
     this.lastName = lastName;
     this.color = color;
@@ -70,7 +110,6 @@ function PowerRanger(firstName, lastName, color, zord){
 
     this.morphinTime = function(){
         console.log(
-
             this.firstName + " yells! It's Morphin Time!! \n" +
             this.zord.toUpperCase() + "!!!!" + "\n" +
             this.firstName +
@@ -78,6 +117,11 @@ function PowerRanger(firstName, lastName, color, zord){
 
         );
     }
+
+    this.attack = function(){
+
+    }
+
 }
 
 // var PlayerArr = []
@@ -93,15 +137,15 @@ function PowerRanger(firstName, lastName, color, zord){
 // PlayerArr.push(jason,kimberly,trini,zack,billy,tommy,bulk,skull);
 //Power Ranger Constructor
 
-var originalRangersArray = [];
-var redRanger = new PowerRanger(jason, "Red", "Tyrannosaur");
-var pinkRanger = new PowerRanger(kimberly, "Pink", "Pterodactyl");
-var yellowRanger = new PowerRanger(trini, "Yellow","Saber Tooth Tiger");
-var blackRanger = new PowerRanger(zack, "Black", "Mastodon");
-var blueRanger = new PowerRanger(billy, "Blue","Triceratops");
-var greenRanger = new PowerRanger(tommy,"Green","DragonZord");
+// var originalRangersArray = [];
+// var redRanger = new PowerRanger(jason, "Red", "Tyrannosaur");
+// var pinkRanger = new PowerRanger(kimberly, "Pink", "Pterodactyl");
+// var yellowRanger = new PowerRanger(trini, "Yellow","Saber Tooth Tiger");
+// var blackRanger = new PowerRanger(zack, "Black", "Mastodon");
+// var blueRanger = new PowerRanger(billy, "Blue","Triceratops");
+// var greenRanger = new PowerRanger(tommy,"Green","DragonZord");
 
-originalRangersArray.push(redRanger, pinkRanger, yellowRanger, blackRanger, blueRanger, greenRanger);
+// originalRangersArray.push(redRanger, pinkRanger, yellowRanger, blackRanger, blueRanger, greenRanger);
 
 
 function morphAllRangers(powerRangerTeam){
@@ -110,5 +154,5 @@ function morphAllRangers(powerRangerTeam){
     });
 }
 
-morphAllRangers(originalRangersArray);
+// morphAllRangers(originalRangersArray);
 
