@@ -18,25 +18,26 @@
 
 // Monster Grows, Summon Zords, defeat monster.
 console.log("Testing");
+let gameSpace = document.getElementById("gameSpace");
+
 
 function createPlayer(){
     var playerFirstName = prompt("What is your first name?");
     var playerLastName = prompt("What is your last name?");
     var playerColor = prompt("What is your favorite color?");
     var playerZord = prompt("Select Zord");
-    var player = new PowerRanger(playerFirstName, playerLastName, 50, 13, playerColor, playerZord);
-    return player;
+    return new PowerRanger(playerFirstName, playerLastName, playerColor, playerZord, 50, 7,14,17, 10);
 }
 
 function createRangerTeam(player){
     let rangersArr = [];
-    var redRanger = new PowerRanger("Jason", "Scott", "Red", "Tyrannosaur");
-    var pinkRanger = new PowerRanger("Kimberly", "Hart", "Pink", "Pterodactyl");
-    var yellowRanger = new PowerRanger("Trini", "Kwan", "Yellow","Saber Tooth Tiger");
-    var blackRanger = new PowerRanger("Zack", "Taylor", "Black", "Mastodon");
-    var blueRanger = new PowerRanger("Billy", "Cranston", "Blue","Triceratops");
-    var greenRanger = new PowerRanger("Tommy", "Oliver","Green","DragonZord");
-    rangersArr.unshift(player, redRanger, pinkRanger,yellowRanger,blackRanger,blackRanger,blueRanger,greenRanger);
+    var redRanger = new PowerRanger("Jason", "Scott", "Red", "Tyrannosaur",50, 7,14,17, 10);
+    var pinkRanger = new PowerRanger("Kimberly", "Hart", "Pink", "Pterodactyl",50, 7,14,17, 10);
+    var yellowRanger = new PowerRanger("Trini", "Kwan","Yellow","Saber Tooth Tiger",50, 7,14,17, 10);
+    var blackRanger = new PowerRanger("Zack", "Taylor","Black", "Mastodon",50, 7,14,17, 10);
+    var blueRanger = new PowerRanger("Billy", "Cranston", "Blue","Triceratops",50, 7,14,17, 10);
+    var greenRanger = new PowerRanger("Tommy", "Oliver","Green","DragonZord",50, 7,14,17, 10);
+    rangersArr.push(player, redRanger, pinkRanger,yellowRanger,blackRanger,blueRanger,greenRanger);
     return rangersArr;
 
 }
@@ -55,24 +56,22 @@ function X2d6(){
     return d6Roll() + d6Roll()
 }
 
-function NPC(name, HP,AP){
+function NPC(name, HP,AT, def, arm, dmg){
     this.name = name;
     this.HP = HP;
-    this.AP = AP;
-    this.attack = function(){
-
-    }
+    this.AT = AT;
+    this.def = def;
+    this.arm = arm;
+    this.dmg = dmg
 }
 
-function Monster(NPC){
 
-}
 
 function spawnPuddies(){
    let puddiesArr = [];
    var numOfPuddies = randomIntFromRange(3, 10);
    for (let i = 0; i < numOfPuddies; i++)
-    puddiesArr.unshift(new NPC("Puddie"+[i], 10, 2));
+    puddiesArr.push(new NPC("Puddie"+[i], 10, 2, 12,15,2));
    return puddiesArr;
 }
 
@@ -99,13 +98,15 @@ let Alpha5 = {
 
 }
 
-function PowerRanger(firstName, lastName, HP, defence, color, zord){
-    this.HP = HP;
-    this.defence = defence;
+function PowerRanger(firstName, lastName, color, zord, HP, AT, def, arm, dmg ){
     this.firstName = firstName;
     this.lastName = lastName;
-    this.color = color;
     this.zord = zord;
+    this.color = color;
+    this.HP = HP;
+    this.def = def;
+    this.arm = arm;
+    this.dmg = dmg;
 
     this.morphinTime = function(){
         console.log(
@@ -124,20 +125,31 @@ function PowerRanger(firstName, lastName, HP, defence, color, zord){
 }
 function startGame(){
 
-createRangerTeam(createPlayer());
-
-    var redRanger = new PowerRanger("Jason", "Scott", "Red", "Tyrannosaur");
-    var pinkRanger = new PowerRanger("Kimberly", "Hart", "Pink", "Pterodactyl");
-    var yellowRanger = new PowerRanger("Trini", "Kwan", "Yellow","Saber Tooth Tiger");
-    var blackRanger = new PowerRanger("Zack", "Taylor", "Black", "Mastodon");
-    var blueRanger = new PowerRanger("Billy", "Cranston", "Blue","Triceratops");
-    var greenRanger = new PowerRanger("Tommy", "Oliver","Green","DragonZord");
+    var rangers = createRangerTeam(createPlayer());
 
 
-    console.log("Greeting");
+    console.log(rangers);
+
+    console.log("Greetings new ranger...blah blah blah");
+
+
+
     console.log("Yee find yeeself in yon Angel Grove Juice Bar");
+
+
+
     console.log("Yee find yeeself in yon Command Center");
+
+
+
     console.log("Yee find yeeself in yon *scene* fighting puddies");
+
+
+
+    console.log(spawnPuddies());
+
+
+
     console.log("Yee find yeeself in yon Megazord fighting monster");
 
 
