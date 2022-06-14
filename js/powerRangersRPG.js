@@ -101,9 +101,10 @@ let Alpha5 = {
 function PowerRanger(firstName, lastName, color, zord, HP, AT, def, arm, dmg ){
     this.firstName = firstName;
     this.lastName = lastName;
-    this.zord = zord;
     this.color = color;
+    this.zord = zord;
     this.HP = HP;
+    this.AT = AT;
     this.def = def;
     this.arm = arm;
     this.dmg = dmg;
