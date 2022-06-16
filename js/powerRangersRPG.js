@@ -53,7 +53,9 @@ function d6Roll(){
 }
 
 function X2d6(){
-    return d6Roll() + d6Roll()
+    let result = d6Roll() + d6Roll()
+    console.log("you rolled a " + result);
+    return result
 }
 
 function NPC(name, HP,AT, def, arm, dmg){
@@ -74,9 +76,6 @@ function spawnPuddies(){
     puddiesArr.push(new NPC("Puddie"+[i], 10, 2, 12,15,2));
    return puddiesArr;
 }
-
-
-
 
 let Zordon = {
 
@@ -124,7 +123,39 @@ function PowerRanger(firstName, lastName, color, zord, HP, AT, def, arm, dmg ){
     }
 
 }
-function startGame(){
+
+
+
+
+// function startGame(){
+
+    function calculateRangerDmg(PowerRanger, NPC){
+console.log("The " +PowerRanger.color + " Ranger is attacking " + NPC.name)
+
+        let PRattack = PowerRanger.AT + X2d6();
+        let PRdmg = PowerRanger.dmg + X2d6();
+        if(PRattack > NPC.def){
+            console.log("you hit");
+
+            if(PRdmg > NPC.arm){
+                console.log("Armor " + NPC.arm);
+                console.log("Ranger Damage " + PRdmg);
+                console.log("NPC ARM " + NPC.arm);
+                console.log("NPC HP " + NPC.HP);
+                console.log(NPC.arm - PRdmg);
+
+                let result = PRdmg -NPC.arm;
+                console.log(NPC.arm);
+                NPC.HP -= result;
+                console.log(result);
+                console.log("New NPC HP " + NPC.HP);
+                return result;
+            } else{
+                console.log("you miss")
+            }
+
+        }
+    }
 
     var rangers = createRangerTeam(createPlayer());
 
@@ -145,16 +176,18 @@ function startGame(){
 
     console.log("Yee find yeeself in yon *scene* fighting puddies");
 
+var puddies = spawnPuddies();
 
-
-    console.log(spawnPuddies());
+    console.log(puddies);
 
 
 
     console.log("Yee find yeeself in yon Megazord fighting monster");
 
+calculateRangerDmg(rangers[0],puddies[0])
+// }
 
-}
+// startGame()
 
 //Player Constructor
 
